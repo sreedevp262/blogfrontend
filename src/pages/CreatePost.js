@@ -57,7 +57,7 @@ function CreatePost() {
     }
 
     try {
-      const res = await axios.post("http://localhost:8000/api/posts/create", post, {
+      const res = await axios.post("https://blog-backend-2xmq.onrender.com/api/posts/create", post, {
         withCredentials: true,
       });
       navigate("/posts/post/" + res.data._id); // FIXED: Changed _Id to _id

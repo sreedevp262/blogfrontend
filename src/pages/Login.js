@@ -16,7 +16,7 @@ function Login() {
     e.preventDefault()
     setError(null);
     try {
-      const res = await axios.post("http://localhost:8000/api/auth/login", {
+      const res = await axios.post("https://blog-backend-2xmq.onrender.com/api/auth/login", {
         email,password
       },{ withCredentials: true }
       // { 

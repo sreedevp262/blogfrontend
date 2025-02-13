@@ -14,7 +14,7 @@ function Register() {
   const handleRegister = async () => {
     try {
       
-      const res = await axios.post( "http://localhost:8000/api/auth/register", { username, email, password });
+      const res = await axios.post( "https://blog-backend-2xmq.onrender.com/api/auth/register", { username, email, password });
       setError(false);
       alert(res.data)
       // navigate("/login");

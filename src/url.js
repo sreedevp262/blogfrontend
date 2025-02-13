@@ -1,3 +1,3 @@
 // export const URL= "http://localhost:8000";
-export const IF= "http://localhost:8000/images/";
-export const URL = "http://localhost:8000";
+export const IF= "https://blog-backend-2xmq.onrender.com/images/";
+export const URL = "https://blog-backend-2xmq.onrender.com";
