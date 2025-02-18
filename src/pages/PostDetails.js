@@ -56,9 +56,12 @@ function PostDetails() {
     }
   };
 
-  useEffect(() => {
+ useEffect(() => {
+  if (PostID) {
     fetchPostComments();
-  }, [PostID]);
+  }
+}, [PostID]);
+
 
   // ✅ Post a new comment
   const postComment = async (e) => {
