@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-// import { URL } from '../url';
+import { URL } from '../url';
 import Footer from '../components/Footer';
 import axios from 'axios';
 
@@ -14,7 +14,7 @@ function Register() {
   const handleRegister = async () => {
     try {
       
-      const res = await axios.post( "https://blog-backend-2xmq.onrender.com/api/auth/register", { username, email, password });
+      const res = await axios.post( `${URL}/api/auth/register`, { username, email, password });
       setError(false);
       alert(res.data)
       // navigate("/login");

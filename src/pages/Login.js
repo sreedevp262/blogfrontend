@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 import { UserContext } from "../context/UserContext";
-// import { URL } from "../url"; // Ensure this is correctly imported
+import { URL } from "../url"; // Ensure this is correctly imported
 import axios from "axios";
 
 function Login() {
@@ -16,7 +16,7 @@ function Login() {
     e.preventDefault()
     setError(null);
     try {
-      const res = await axios.post("https://blog-backend-2xmq.onrender.com/api/auth/login", {
+      const res = await axios.post(`${URL}/api/auth/login`, {
         email,password
       },{ withCredentials: true }
       // { 

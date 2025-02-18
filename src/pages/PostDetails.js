@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect,useCallback } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Comment from "../components/Comment";
 import Footer from "../components/Footer";
@@ -20,14 +20,14 @@ function PostDetails() {
   const navigate = useNavigate();
 
   // ✅ Fetch post data
-  const fetchPost = async () => {
+  const fetchPost = useCallback(async () => {
     try {
       const res = await axios.get(URL + "/api/posts/" + PostID); // ✅ Correct URL
       setPost(res.data);
     } catch (err) {
       console.log(err);
     }
-  };
+  },[PostID]);
 
   // ✅ Delete post function
   const handleDeletePost = async () => {
@@ -41,10 +41,10 @@ function PostDetails() {
 
   useEffect(() => {
     fetchPost();
-  }, [PostID]);
+  }, [fetchPost, PostID]);
 
   // ✅ Fetch comments
-  const fetchPostComments = async () => {
+  const fetchPostComments = useCallback(async () => {
     setLoader(true);
     try {
       const res = await axios.get(URL + "/api/comments/post/" + PostID);
@@ -54,13 +54,13 @@ function PostDetails() {
     } finally {
       setLoader(false);
     }
-  };
+  },[PostID]);
 
  useEffect(() => {
   if (PostID) {
     fetchPostComments();
   }
-}, [PostID]);
+}, [fetchPostComments, PostID]);
 
 
   // ✅ Post a new comment

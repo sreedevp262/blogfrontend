@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import React, { useContext, useEffect, useState, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import axios from 'axios';
@@ -14,7 +14,7 @@ function Profile() {
   const [updated, setUpdated] = useState(false);
   const navigate = useNavigate();
 
-  const fetchProfile = async () => {
+  const fetchProfile = useCallback(async () => {
     try {
       const res = await axios.get(URL + "/api/users/" + user._id);
       setUsername(res.data.username);
@@ -23,13 +23,13 @@ function Profile() {
     } catch (err) {
       console.log(err);
     }
-  };
+  },[user._id]);
 
   useEffect(() => {
     if (user?._id) {
       fetchProfile();
     }
-  }, [user?._id]); // ✅ Correct dependency
+  }, [fetchProfile,user?._id]); // ✅ Correct dependency
 
   const handleUserUpdated = async () => {
     setUpdated(false);
